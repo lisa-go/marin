@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import './index.scss';
 import { RootState } from './redux/store';
 import { change } from './redux/slices/themeSlice';
+import Home from './Home/Home';
 
 export default function App() {
   const theme = useSelector((state: RootState) => state.theme.current);
@@ -23,11 +24,13 @@ export default function App() {
     }
   }, []);
 
+  const page = useSelector((state: RootState) => state.page.current);
+
   return (
     <div
       className='App'
       id={theme}>
-      marin
+      {page === 'home' && <Home />}
     </div>
   );
 }
