@@ -2,33 +2,70 @@
 
 #home {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
 
-  img {
-    height: 350px;
-  }
+  #home-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(125deg, rgba($off-white, 0.5), transparent 60%);
+    box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
 
-  #home-text-container {
-    h1 {
-      font-family: $logo-font;
-      font-size: 5rem;
-      line-height: 2rem;
-      letter-spacing: 2px;
+    img {
+      height: 350px;
     }
 
-    h3 {
-      text-align: right;
-      font-weight: 100;
+    #home-text-container {
+      h1 {
+        font-family: $logo-font;
+        font-size: 5rem;
+        line-height: 2rem;
+        letter-spacing: 2px;
+        color: $pink;
+      }
+
+      h3 {
+        text-align: right;
+        font-weight: 100;
+        font-size: 1.25rem;
+      }
+    }
+
+    button {
       font-size: 1.25rem;
+      padding: 6px 1.25rem;
+      background-color: transparent;
+      background-clip: padding-box;
+      border: 2px solid;
+      border-image-slice: 1;
+      font-weight: 100;
     }
   }
+}
 
-  button {
-    font-size: 1.25rem;
-    padding: 6px 1.25rem;
-    font-weight: 100;
+#light #home {
+  background: url(../assets/light-clouds.png);
+  background-size: 100%;
+
+  #home-content-container button {
+    border-image-source: linear-gradient(125deg, $pink, $purple, $blue);
+    color: $off-black;
+  }
+}
+
+#dark #home {
+  background: url(../assets/dark-clouds.png);
+  background-size: 100%;
+
+  #home-content-container button {
+    border-image-source: linear-gradient(125deg, $blue, $purple, $pink);
+    color: $off-white;
   }
 }
