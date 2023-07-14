@@ -1,0 +1,46 @@
+@import '../variables.scss';
+
+#topbar-main,
+#topbar-home {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  height: calc(60px + 2rem);
+
+  #switch-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    svg {
+      stroke-width: 1;
+      height: 1.75rem;
+      width: 1.75rem;
+    }
+  }
+}
+
+#topbar-home {
+  justify-content: flex-end;
+}
+
+#topbar-main {
+  justify-content: space-between;
+
+  #topbar-logo {
+    display: flex;
+    align-items: flex-end;
+
+    img {
+      height: 60px;
+    }
+
+    h1 {
+      font-family: $logo-font;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+  }
+}

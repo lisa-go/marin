@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './index.scss';
 import { RootState } from './redux/store';
-import { change } from './redux/slices/themeSlice';
+import { toggle } from './redux/slices/themeSlice';
 import Home from './Home/Home';
+import TopBar from './TopBar/TopBar';
 
 export default function App() {
   const theme = useSelector((state: RootState) => state.theme.current);
@@ -15,12 +16,12 @@ export default function App() {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
-      dispatch(change('dark'));
+      dispatch(toggle('dark'));
     } else if (
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: light)').matches
     ) {
-      dispatch(change('light'));
+      dispatch(toggle('light'));
     }
   }, []);
 
@@ -30,6 +31,7 @@ export default function App() {
     <div
       className='App'
       id={theme}>
+      <TopBar />
       {page === 'home' && <Home />}
     </div>
   );

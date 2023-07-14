@@ -13,12 +13,12 @@ export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    change: (state, action: PayloadAction<string>) => {
+    toggle: (state, action: PayloadAction<string>) => {
       state.current = action.payload;
     },
   },
 });
 
-export const { change } = themeSlice.actions;
+export const { toggle } = themeSlice.actions;
 
 export default themeSlice.reducer;
