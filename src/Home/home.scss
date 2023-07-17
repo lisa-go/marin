@@ -11,10 +11,10 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 1rem;
+    padding: 1rem 2.5rem;
     padding-bottom: 2rem;
     border-radius: 1rem;
-    background: linear-gradient(125deg, rgba($off-white, 0.5), transparent 60%);
+    background: linear-gradient(135deg, rgba($pink, 0.5), transparent 65%);
     box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
 
@@ -24,11 +24,9 @@
 
     #home-text-container {
       h1 {
-        font-family: $logo-font;
+        @include logo;
         font-size: 5rem;
         line-height: 2rem;
-        letter-spacing: 2px;
-        color: $pink;
       }
 
       h3 {
@@ -38,34 +36,49 @@
       }
     }
 
-    button {
-      font-size: 1.25rem;
-      padding: 6px 1.25rem;
-      background-color: transparent;
-      background-clip: padding-box;
-      border: 2px solid;
-      border-image-slice: 1;
-      font-weight: 100;
+    #home-btn-container {
+      display: flex;
+      gap: 1.5rem;
+
+      button {
+        font-size: 1.25rem;
+        padding: 6px 1.25rem;
+        background-color: transparent;
+        font-weight: 100;
+        border: 1px solid;
+      }
+
+      button:nth-of-type(1) {
+        color: $blue;
+        border-color: $blue;
+      }
+
+      button:nth-of-type(2) {
+        color: $pink;
+        border-color: $pink;
+      }
+
+      button:nth-of-type(3) {
+        color: $purple;
+        border-color: $purple;
+      }
     }
   }
 }
 
 #light #home {
-  background: url(../assets/light-clouds.png);
-  background-size: 100%;
-
-  #home-content-container button {
-    border-image-source: linear-gradient(125deg, $pink, $purple, $blue);
-    color: $off-black;
-  }
+  background: radial-gradient(
+    circle,
+    rgba($off-white, 0.5) 45%,
+    rgba($purple, 0.5) 100%,
+    rgba($pink, 0.5) 130%
+  );
 }
 
 #dark #home {
-  background: url(../assets/dark-clouds.png);
-  background-size: 100%;
-
-  #home-content-container button {
-    border-image-source: linear-gradient(125deg, $blue, $purple, $pink);
-    color: $off-white;
-  }
+  background: radial-gradient(
+    circle at top right,
+    rgba($purple, 0.5) 1%,
+    rgba($off-black, 0.5) 25%
+  );
 }

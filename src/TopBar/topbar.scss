@@ -38,9 +38,7 @@
     }
 
     h1 {
-      font-family: $logo-font;
-      font-size: 2.5rem;
-      letter-spacing: 1px;
+      @include logo;
     }
   }
 }

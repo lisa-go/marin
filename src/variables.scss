@@ -5,6 +5,13 @@ $logo-font: 'Gochi Hand', cursive;
 
 $off-black: #212121;
 $off-white: #f5f5f5;
-$blue: #9ccbfb;
-$pink: #d87c8f;
-$purple: #7776c6;
+$logo-pink: #d87c8f;
+$blue: hsl(210, 40%, 62%);
+$pink: hsl(348, 40%, 62%);
+$purple: hsl(241, 40%, 62%);
+
+@mixin logo {
+  font-family: $logo-font;
+  color: $logo-pink;
+  letter-spacing: 2px;
+}

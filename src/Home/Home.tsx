@@ -19,7 +19,11 @@ export default function Home() {
           <h1>MARIN</h1>
           <h3>a markdown editor</h3>
         </div>
-        <button onClick={() => dispatch(change('main'))}>Get Started</button>
+        <div id='home-btn-container'>
+          <button onClick={() => dispatch(change('main'))}>View Recents</button>
+          <button onClick={() => dispatch(change('main'))}>Import File</button>
+          <button onClick={() => dispatch(change('main'))}>Create New</button>
+        </div>
       </div>
     </div>
   );
