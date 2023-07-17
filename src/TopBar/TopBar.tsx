@@ -21,8 +21,10 @@ export default function TopBar() {
   }, [checked]);
 
   return (
-    <div id={`topbar-${page}`}>
-      {page === 'main' && (
+    <div
+      className='topbar'
+      id={`topbar-${page}`}>
+      {page !== 'home' && (
         <div
           id='topbar-logo'
           onClick={() => dispatch(change('home'))}>

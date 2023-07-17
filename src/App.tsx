@@ -5,6 +5,8 @@ import { RootState } from './redux/store';
 import { toggle } from './redux/slices/themeSlice';
 import Home from './Home/Home';
 import TopBar from './TopBar/TopBar';
+import Recent from './Recent/Recent';
+import Editor from './Editor/Editor';
 
 export default function App() {
   const theme = useSelector((state: RootState) => state.theme.current);
@@ -33,6 +35,8 @@ export default function App() {
       id={theme}>
       <TopBar />
       {page === 'home' && <Home />}
+      {page === 'recent' && <Recent />}
+      {page === 'editor' && <Editor />}
     </div>
   );
 }

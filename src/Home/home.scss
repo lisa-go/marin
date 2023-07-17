@@ -13,9 +13,15 @@
     gap: 2rem;
     padding: 1rem 2.5rem;
     padding-bottom: 2rem;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba($pink, 0.5), transparent 65%);
-    box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem; /* 
+    background: linear-gradient(135deg, rgba($pink, 0.5), transparent 65%); */
+
+    background: radial-gradient(
+      circle at bottom,
+      transparent 60%,
+      rgba($logo-pink, 0.8) 0%
+    );
+    box-shadow: 4px 6px 8px rgba($logo-pink, 0.2);
     backdrop-filter: blur(8px);
 
     img {
@@ -42,25 +48,57 @@
 
       button {
         font-size: 1.25rem;
-        padding: 6px 1.25rem;
+        padding: 6px 1.5rem 6px 1rem;
         background-color: transparent;
         font-weight: 100;
         border: 1px solid;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &:hover {
+          transition: 800ms;
+        }
       }
 
-      button:nth-of-type(1) {
-        color: $blue;
-        border-color: $blue;
-      }
-
-      button:nth-of-type(2) {
+      label {
+        @extend button;
+        cursor: pointer;
         color: $pink;
         border-color: $pink;
+
+        &:hover {
+          transition: 800ms;
+        }
+
+        &:hover {
+          background-color: rgba($pink, 0.8);
+          color: $off-white;
+        }
       }
 
-      button:nth-of-type(3) {
+      input[type='file'] {
+        display: none;
+      }
+
+      #recent-btn {
+        color: $blue;
+        border-color: $blue;
+
+        &:hover {
+          background-color: rgba($blue, 0.8);
+          color: $off-white;
+        }
+      }
+
+      #new-btn {
         color: $purple;
         border-color: $purple;
+
+        &:hover {
+          background-color: rgba($purple, 0.8);
+          color: $off-white;
+        }
       }
     }
   }
@@ -69,16 +107,15 @@
 #light #home {
   background: radial-gradient(
     circle,
-    rgba($off-white, 0.5) 45%,
-    rgba($purple, 0.5) 100%,
-    rgba($pink, 0.5) 130%
+    rgba($off-white, 0.5) 35%,
+    rgba($logo-pink, 0.4) 90%
   );
 }
 
 #dark #home {
   background: radial-gradient(
-    circle at top right,
-    rgba($purple, 0.5) 1%,
-    rgba($off-black, 0.5) 25%
+    circle,
+    rgba($off-black, 0.5) 60%,
+    rgba($logo-pink, 0.5) 400%
   );
 }

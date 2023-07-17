@@ -1,7 +1,6 @@
 @import '../variables.scss';
 
-#topbar-main,
-#topbar-home {
+.topbar {
   width: 100%;
   position: fixed;
   display: flex;
@@ -22,11 +21,7 @@
   }
 }
 
-#topbar-home {
-  justify-content: flex-end;
-}
-
-#topbar-main {
+.topbar {
   justify-content: space-between;
 
   #topbar-logo {
@@ -41,4 +36,8 @@
       @include logo;
     }
   }
+}
+
+#topbar-home {
+  justify-content: flex-end;
 }
