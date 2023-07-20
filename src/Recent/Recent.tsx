@@ -1,10 +1,17 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import './recent.scss';
+import RecentDocument from './RecentDocument';
+import { useEffect } from 'react';
 
 export default function Recent() {
   const recentFiles = useSelector(
     (state: RootState) => state.files.recentFiles
   );
+
+  useEffect(() => {
+    console.log(recentFiles);
+  }, [recentFiles]);
 
   return (
     <div
@@ -14,8 +21,8 @@ export default function Recent() {
         return (
           <div
             key={fi.id}
-            style={{ border: '2px solid black', width: '300px' }}>
-            {fi.content?.toString()}
+            className='recent-document-container'>
+            <RecentDocument file={fi} />
           </div>
         );
       })}

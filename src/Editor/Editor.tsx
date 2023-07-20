@@ -1,16 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useEffect, useState } from 'react';
 import './editor.scss';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
+import { editCurrentFile } from '../redux/slices/filesSlice';
 
 export default function Editor() {
   const currentFile = useSelector(
     (state: RootState) => state.files.currentFile
   );
+  const dispatch = useDispatch();
 
-  const [htmlContent, setHtmlContent] = useState<any>();
+  const [htmlContent, setHtmlContent] = useState<string>('');
 
   useEffect(() => {
     if (currentFile?.content) {
@@ -18,7 +20,8 @@ export default function Editor() {
         marked.parse(
           currentFile.content
             .toString()
-            .replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, '')
+            .replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, ''),
+          { headerIds: false, mangle: false }
         )
       );
       setHtmlContent(clean);
@@ -38,7 +41,14 @@ export default function Editor() {
         <div
           id='editor-text'
           contentEditable='true'
-          onInput={(e) => console.log(e.currentTarget)}></div>
+          onInput={(e) =>
+            dispatch(
+              editCurrentFile({
+                id: currentFile ? currentFile.id : '',
+                content: e.currentTarget.innerHTML,
+              })
+            )
+          }></div>
       </div>
     </div>
   );

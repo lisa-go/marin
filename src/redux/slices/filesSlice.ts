@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 
 type FileContent = string | ArrayBuffer | null;
 
-interface File {
+export interface File {
   content: FileContent;
   id: string;
 }
@@ -40,9 +40,19 @@ export const filesSlice = createSlice({
         ? [...state.recentFiles, { content: ' ', id: id }]
         : [{ content: ' ', id: id }];
     },
+    editCurrentFile: (
+      state,
+      action: PayloadAction<{ id: string; content: string }>
+    ) => {
+      if (state.currentFile) state.currentFile.content = action.payload.content;
+      if (state.recentFiles)
+        state.recentFiles.filter(
+          (file) => file.id === state.currentFile?.id
+        )[0].content = action.payload.content;
+    },
   },
 });
 
-export const { importFile, createFile } = filesSlice.actions;
+export const { importFile, createFile, editCurrentFile } = filesSlice.actions;
 
 export default filesSlice.reducer;
