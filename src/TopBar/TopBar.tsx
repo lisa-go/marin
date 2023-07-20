@@ -13,7 +13,7 @@ export default function TopBar() {
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.theme.current);
 
-  const [checked, setChecked] = useState(theme === 'light' ? false : true);
+  const [checked, setChecked] = useState(theme === 'light' ? true : false);
 
   useEffect(() => {
     if (checked === true) dispatch(toggle('dark'));

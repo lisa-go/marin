@@ -5,7 +5,7 @@ import { change } from '../redux/slices/pageSlice';
 import { VscHistory } from 'react-icons/vsc';
 import { LuFolderOpen } from 'react-icons/lu';
 import { IoDocumentOutline } from 'react-icons/io5';
-import { importFile } from '../redux/slices/filesSlice';
+import { createFile, importFile } from '../redux/slices/filesSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -20,6 +20,11 @@ export default function Home() {
         dispatch(importFile(e.target.result));
       }
     };
+    dispatch(change('editor'));
+  }
+
+  function handleCreate() {
+    dispatch(createFile());
     dispatch(change('editor'));
   }
 
@@ -58,7 +63,7 @@ export default function Home() {
           />
           <button
             id='new-btn'
-            onClick={() => dispatch(change('editor'))}>
+            onClick={() => handleCreate()}>
             <IoDocumentOutline />
             <span>Create New</span>
           </button>

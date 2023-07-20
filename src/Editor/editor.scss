@@ -1,0 +1,26 @@
+@import '../variables.scss';
+
+#editor {
+  height: fit-content;
+
+  #editor-container {
+    #editor-text {
+      min-height: 100%;
+
+      > * {
+        padding: revert;
+        margin: revert;
+      }
+
+      pre {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+
+        code {
+          font-family: monospace;
+        }
+      }
+    }
+  }
+}

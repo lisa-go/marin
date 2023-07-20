@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import uniqid from 'uniqid';
 
-type File = string | ArrayBuffer | null;
+type FileContent = string | ArrayBuffer | null;
+
+interface File {
+  content: FileContent;
+  id: string;
+}
 
 interface FilesState {
-  importedFile: File;
-  currentFile: File;
+  importedFile: File | null;
+  currentFile: File | null;
   recentFiles: File[] | null;
 }
 
@@ -19,16 +25,24 @@ export const filesSlice = createSlice({
   name: 'files',
   initialState,
   reducers: {
-    importFile: (state, action: PayloadAction<File>) => {
-      state.importedFile = action.payload;
-      state.currentFile = action.payload;
+    importFile: (state, action: PayloadAction<FileContent>) => {
+      const id = uniqid();
+      state.importedFile = { content: action.payload, id: id };
+      state.currentFile = { content: action.payload, id: id };
       state.recentFiles = state.recentFiles
-        ? [...state.recentFiles, action.payload]
-        : [action.payload];
+        ? [...state.recentFiles, { content: action.payload, id: id }]
+        : [{ content: action.payload, id: id }];
+    },
+    createFile: (state) => {
+      const id = uniqid();
+      state.currentFile = { content: ' ', id: id };
+      state.recentFiles = state.recentFiles
+        ? [...state.recentFiles, { content: ' ', id: id }]
+        : [{ content: ' ', id: id }];
     },
   },
 });
 
-export const { importFile } = filesSlice.actions;
+export const { importFile, createFile } = filesSlice.actions;
 
 export default filesSlice.reducer;

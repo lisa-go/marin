@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 
   #home-content-container {
     display: flex;
@@ -13,8 +14,7 @@
     gap: 2rem;
     padding: 1rem 2.5rem;
     padding-bottom: 2rem;
-    border-radius: 1rem; /* 
-    background: linear-gradient(135deg, rgba($pink, 0.5), transparent 65%); */
+    border-radius: 1rem;
 
     background: radial-gradient(
       circle at bottom,
