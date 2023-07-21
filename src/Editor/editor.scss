@@ -4,6 +4,8 @@
   height: fit-content;
 
   #editor-container {
+    padding: 0 8%;
+
     #editor-text {
       min-height: 100%;
 
@@ -19,6 +21,47 @@
 
         code {
           font-family: monospace;
+        }
+      }
+    }
+
+    #toolbar-container {
+      position: fixed;
+      right: 1%;
+      padding: 1rem;
+      border: 1px solid red;
+      display: flex;
+      flex-direction: column;
+
+      > button {
+        aspect-ratio: 1 / 1;
+        width: 30px;
+
+        svg {
+          height: 100%;
+          width: 100%;
+          padding: 3px;
+        }
+
+        input {
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      #heading-btn-container {
+        display: flex;
+        flex-direction: column;
+        transition: 400ms;
+        position: absolute;
+        top: 2rem;
+        right: 1rem;
+        width: max-content;
+
+        button {
+          aspect-ratio: revert;
+          text-align: right;
         }
       }
     }

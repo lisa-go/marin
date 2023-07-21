@@ -5,6 +5,7 @@ import './editor.scss';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { editCurrentFile } from '../redux/slices/filesSlice';
+import Toolbar from './Toolbar';
 
 export default function Editor() {
   const currentFile = useSelector(
@@ -33,15 +34,77 @@ export default function Editor() {
     if (container) container.innerHTML = htmlContent;
   }, [htmlContent]);
 
+  /* editing */
+  const { current: tool, color } = useSelector(
+    (state: RootState) => state.tool
+  );
+
+  const [text, setText] = useState<string | null>(null);
+  function getText() {
+    const currentText = window.getSelection()?.toString();
+    setText(currentText);
+  }
+
+  const [node, setNode] = useState<Element | null>(null);
+  function getNode(e: EventTarget) {
+    const currentNode = e as Element;
+    setNode(currentNode);
+  }
+
+  function changeNode(
+    node: Element,
+    text: string | null,
+    tool: string,
+    color: string | null
+  ) {
+    const parser = new DOMParser();
+    switch (tool) {
+      case 'h1':
+      case 'h2':
+      case 'h3':
+      case 'h4':
+      case 'h5':
+      case 'h6':
+        node.parentNode?.replaceChild(
+          parser
+            .parseFromString(
+              `<${tool}>${node.textContent}</${tool}>`,
+              'text/html'
+            )
+            .querySelector('body')?.firstChild as Node,
+          node
+        );
+        break;
+
+      default:
+        break;
+    }
+    console.log('fire');
+  }
+
+  useEffect(() => {
+    console.log(tool);
+    console.log(node);
+    console.log(text);
+    if (node && tool) changeNode(node, text, tool, color);
+  }, [tool]);
+
+  /*   useEffect(() => {
+    console.log(selection);
+  }, [selection]); */
+
   return (
     <div
       id='editor'
       className='container'>
       <div id='editor-container'>
+        <Toolbar />
         <div
           id='editor-text'
           contentEditable='true'
-          onInput={(e) =>
+          onMouseDown={(e) => getNode(e.target)}
+          onMouseUp={getText}
+          onChange={(e) =>
             dispatch(
               editCurrentFile({
                 id: currentFile ? currentFile.id : '',
