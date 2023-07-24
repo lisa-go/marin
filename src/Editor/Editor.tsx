@@ -42,7 +42,8 @@ export default function Editor() {
   const [text, setText] = useState<string | null>(null);
   function getText() {
     const currentText = window.getSelection()?.toString();
-    setText(currentText);
+    if (currentText) setText(currentText);
+    else setText(null);
   }
 
   const [node, setNode] = useState<Element | null>(null);
@@ -58,6 +59,7 @@ export default function Editor() {
     color: string | null
   ) {
     const parser = new DOMParser();
+
     switch (tool) {
       case 'h1':
       case 'h2':
@@ -65,6 +67,7 @@ export default function Editor() {
       case 'h4':
       case 'h5':
       case 'h6':
+      case 'p':
         node.parentNode?.replaceChild(
           parser
             .parseFromString(
@@ -79,7 +82,6 @@ export default function Editor() {
       default:
         break;
     }
-    console.log('fire');
   }
 
   useEffect(() => {
@@ -88,6 +90,10 @@ export default function Editor() {
     console.log(text);
     if (node && tool) changeNode(node, text, tool, color);
   }, [tool]);
+
+  useEffect(() => {
+    console.log(text);
+  }, [text]);
 
   /*   useEffect(() => {
     console.log(selection);
