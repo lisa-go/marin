@@ -35,9 +35,7 @@ export default function Editor() {
   }, [htmlContent]);
 
   /* editing */
-  const { current: tool, color } = useSelector(
-    (state: RootState) => state.tool
-  );
+  const tool = useSelector((state: RootState) => state.tool.current);
 
   const [text, setText] = useState<string | null>(null);
   function getText() {
@@ -52,12 +50,7 @@ export default function Editor() {
     setNode(currentNode);
   }
 
-  function changeNode(
-    node: Element,
-    text: string | null,
-    tool: string,
-    color: string | null
-  ) {
+  function changeNode(node: Element, text: string | null, tool: string) {
     const parser = new DOMParser();
 
     switch (tool) {
@@ -88,7 +81,7 @@ export default function Editor() {
     console.log(tool);
     console.log(node);
     console.log(text);
-    if (node && tool) changeNode(node, text, tool, color);
+    if (node && tool) changeNode(node, text, tool);
   }, [tool]);
 
   useEffect(() => {

@@ -28,25 +28,27 @@
     #toolbar-container {
       position: fixed;
       right: 1%;
-      padding: 1rem;
-      border: 1px solid red;
+      padding: 0.75rem;
+      border-radius: 2.5rem;
       display: flex;
       flex-direction: column;
+      gap: 3px;
 
       > button {
+        transition: 400ms;
         aspect-ratio: 1 / 1;
-        width: 30px;
+        width: 34px;
+        border-radius: 50%;
+        padding: 2px;
+        border: none;
+        background-color: rgba($color: $purple, $alpha: 0.25);
 
         svg {
+          transition: 400ms;
           height: 100%;
-          width: 100%;
-          padding: 3px;
-        }
-
-        input {
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
+          width: auto;
+          padding: 2px;
+          color: $purple;
         }
       }
 
@@ -65,5 +67,33 @@
         }
       }
     }
+  }
+}
+
+#light #editor #editor-container #toolbar-container {
+  > button:hover {
+    box-shadow: 1px 3px 5px rgba($color: $off-black, $alpha: 0.5);
+
+    svg {
+      color: rgba($color: $off-black, $alpha: 0.75);
+    }
+  }
+
+  > button:active {
+    box-shadow: inset 1px 2px 3px rgba($color: $off-black, $alpha: 0.5);
+  }
+}
+
+#dark #editor #editor-container #toolbar-container {
+  > button:hover {
+    box-shadow: 1px 3px 5px rgba($color: $off-white, $alpha: 0.3);
+
+    svg {
+      color: rgba($color: $off-white, $alpha: 0.75);
+    }
+  }
+
+  > button:active {
+    box-shadow: inset 1px 2px 3px rgba($color: $off-white, $alpha: 0.15);
   }
 }
